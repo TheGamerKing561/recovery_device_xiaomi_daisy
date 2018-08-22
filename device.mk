@@ -19,12 +19,14 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.1-impl.recovery \
+    bootctrl.daisy.recovery
 
-PRODUCT_PACKAGES += \
-    bootctrl.msm8953
+PRODUCT_VENDOR_PROPERTIES += ro.hardware.bootctrl=daisy
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
