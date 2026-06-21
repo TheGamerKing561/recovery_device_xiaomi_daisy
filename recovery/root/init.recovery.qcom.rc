@@ -61,7 +61,7 @@ on fs
     start servicemanager
 
 on boot
-    start health-hal-2-0
+    start health-hal-2-1
 
 service hwservicemanager /system/bin/hwservicemanager
     user root
