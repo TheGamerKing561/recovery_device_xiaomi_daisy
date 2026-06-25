@@ -8,7 +8,6 @@
 /dev/block/bootdevice/by-name/vendor         /vendor         ext4    ro,barrier=1                                                    wait,slotselect
 /dev/block/bootdevice/by-name/modem          /modem          vfat  	 defaults                                    				     wait,slotselect
 /dev/block/bootdevice/by-name/persist        /persist        ext4    defaults                                    				     defaults
-/dev/block/bootdevice/by-name/bluetooth      /bt_firmware    vfat    defaults                                      					 wait,slotselect
 
 # USB-OTG
 /devices/platform/soc/7000000.ssusb/7000000.dwc3/xhci-hcd.0.auto   /storage/usbotg    auto    nosuid,nodev    wait,voldmanaged=usbotg:auto
