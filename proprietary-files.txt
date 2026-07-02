@@ -22,3 +22,7 @@ vendor/lib64/libdiag.so:recovery/root/vendor/lib64/libdiag.so
 vendor/lib64/libtime_genoff.so:recovery/root/vendor/lib64/libtime_genoff.so
 vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so:recovery/root/vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 vendor/lib64/hw/bootctrl.msm8953.so:recovery/root/vendor/lib64/hw/bootctrl.msm8953.so
+
+# taken from lavender
+vendor/lib64/libspl.so:recovery/root/vendor/lib64/libspl.so
+vendor/lib64/libops.so:recovery/root/vendor/lib64/libops.so
