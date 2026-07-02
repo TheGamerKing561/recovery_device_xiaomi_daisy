@@ -7,6 +7,9 @@
 
 LOCAL_PATH := device/xiaomi/daisy
 
+# Shipping API level 
+PRODUCT_SHIPPING_API_LEVEL := 27
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
