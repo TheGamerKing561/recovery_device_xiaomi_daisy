@@ -1,13 +1,14 @@
 # mount point    fstype            device                                 device2               flags
 
 /boot            emmc              /dev/block/bootdevice/by-name/boot                           flags=slotselect;backup=1;flashimg=1
-/system          ext4              /dev/block/bootdevice/by-name/system                         flags=slotselect;display="System";backup=1;wipeingui
+/system          ext4              /dev/block/bootdevice/by-name/system                         flags=wipeingui;slotselect;display="System";backup=1
 /system_image    emmc              /dev/block/bootdevice/by-name/system     	                flags=slotselect;display="System Image";backup=1;flashimg=1
 /vendor          ext4              /dev/block/bootdevice/by-name/vendor                         flags=slotselect;display="Vendor";backup=1;wipeingui
 /vendor_image    emmc              /dev/block/bootdevice/by-name/vendor                         flags=slotselect;display="Vendor Image";backup=1;flashimg=1
 /splash          emmc              /dev/block/bootdevice/by-name/splash                         flags=display="Splash Image";backup=1;flashimg=1
 /data            ext4              /dev/block/bootdevice/by-name/userdata                       flags=fileencryption=ice;backup=1
 /data            f2fs              /dev/block/bootdevice/by-name/userdata                       flags=fileencryption=ice;backup=1
+/persist         ext4              /dev/block/bootdevice/by-name/persist                        flags=display="Persist";backup=0
 /persist_image   emmc              /dev/block/bootdevice/by-name/persist                        flags=display="Persist Image";backup=1
 /misc            emmc              /dev/block/bootdevice/by-name/misc
 /modem           emmc              /dev/block/bootdevice/by-name/modem                          flags=slotselect;display="Firmware Image";backup=1
