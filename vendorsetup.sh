@@ -53,6 +53,10 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_STATUS_INDENT_RIGHT=50
     # our LED only blinks white
     export OF_USE_GREEN_LED=0
+    export OF_CLOCK_POS=1
+
+    # we don't have hardware buttons, so disable the option to hide navbar
+    export OF_ALLOW_DISABLE_NAVBAR=0
 
     # vanilla build
 	export FOX_VANILLA_BUILD=1
