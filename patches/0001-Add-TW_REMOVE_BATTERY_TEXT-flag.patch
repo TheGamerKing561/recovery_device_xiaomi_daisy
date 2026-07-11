@@ -1,11 +1,12 @@
 From 945f8830940a390c33b1daa4da11bad3bab7f280 Mon Sep 17 00:00:00 2001
 From: TheGamerKing561 <eyadtamer2121@gmail.com>
 Date: Fri, 10 Jul 2026 23:28:23 +0300
-Subject: [PATCH] Add new TW_REMOVE_BATTERY_TEXT flag
+Subject: [PATCH] Add TW_REMOVE_BATTERY_TEXT flag
 
 This flag removes the "Battery: " text from the status bar battery indicator when its set to true.
 
-This flag is useful in cases where we need extra space to move one of the status bar items (like the clock) to be beside the battery percentage (like on Xiaomi Mi A2 Lite (daisy), where we have a big notch in center that completely hides the clock in the status bar, and there is no space to move it beside the battery indicator due to the "Battery: " text).
+This flag is useful in cases where we need extra space to move one of the status bar items (like the clock) to be beside the battery percentage.
+For example, on Xiaomi Mi A2 Lite (daisy), where we have a big notch in center that completely hides the clock in the status bar, and there is no space to move it beside the battery indicator due to the "Battery: " text.
 ---
  Android.mk                      |  3 +++
  data.cpp                        |  6 ++++++
@@ -59,7 +60,7 @@ index a71387f3..9fd021cf 100755
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
 +			<text color="%text_color%">
@@ -92,7 +93,7 @@ index dadfbb9f..4ce6aa66 100755
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
 +			<text color="%text_color%">
@@ -125,7 +126,7 @@ index 104c3f66..479bada8 100755
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
 +			<text color="%text_color%">
@@ -153,7 +154,7 @@ index 104c3f66..479bada8 100755
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
  			<text color="%text_color%">
@@ -178,7 +179,7 @@ index d81a9a9a..7de8bdfe 100755
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
 +			<text color="%text_color%">
@@ -211,7 +212,7 @@ index 83966396..60b46c90 100644
 +				</conditions>
 +				<font resource="font_m"/>
 +				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-+				<text>%tw_battery%%</text>
++				<text>%tw_battery%</text>
 +			</text>
 +
 +			<text color="%text_color%">
