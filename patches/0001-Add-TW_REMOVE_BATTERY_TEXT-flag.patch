@@ -1,27 +1,22 @@
-From 945f8830940a390c33b1daa4da11bad3bab7f280 Mon Sep 17 00:00:00 2001
+From 3b813bb39f918eb9209a66a6ad2cc49ca2b6d6e9 Mon Sep 17 00:00:00 2001
 From: TheGamerKing561 <eyadtamer2121@gmail.com>
-Date: Fri, 10 Jul 2026 23:28:23 +0300
+Date: Sat, 11 Jul 2026 18:03:46 +0300
 Subject: [PATCH] Add TW_REMOVE_BATTERY_TEXT flag
 
 This flag removes the "Battery: " text from the status bar battery indicator when its set to true.
 
 This flag is useful in cases where we need extra space to move one of the status bar items (like the clock) to be beside the battery percentage.
 For example, on Xiaomi Mi A2 Lite (daisy), where we have a big notch in center that completely hides the clock in the status bar, and there is no space to move it beside the battery indicator due to the "Battery: " text.
+
+Change-Id: If2d47b3a638eca358e0c961e1ba8dbb196468aa6
+Signed-off-by: TheGamerKing561 <eyadtamer2121@gmail.com>
 ---
- Android.mk                      |  3 +++
- data.cpp                        |  6 ++++++
- gui/theme/landscape_hdpi/ui.xml | 15 +++++++++++++++
- gui/theme/landscape_mdpi/ui.xml | 15 +++++++++++++++
- gui/theme/portrait_hdpi/ui.xml  | 29 +++++++++++++++++++++++++++++
- gui/theme/portrait_mdpi/ui.xml  | 15 +++++++++++++++
- gui/theme/watch_mdpi/ui.xml     | 15 +++++++++++++++
- 7 files changed, 98 insertions(+)
 
 diff --git a/Android.mk b/Android.mk
-index 383adca5..1c8f81de 100644
+index 383adca..1c8f81d 100644
 --- a/Android.mk
 +++ b/Android.mk
-@@ -269,6 +269,9 @@ endif
+@@ -269,6 +269,9 @@
  ifeq ($(TW_NO_BATT_PERCENT), true)
      LOCAL_CFLAGS += -DTW_NO_BATT_PERCENT
  endif
@@ -32,10 +27,10 @@ index 383adca5..1c8f81de 100644
      LOCAL_CFLAGS += -DTW_NO_CPU_TEMP
  endif
 diff --git a/data.cpp b/data.cpp
-index 00785242..7da3ea5a 100644
+index 0078524..7da3ea5 100644
 --- a/data.cpp
 +++ b/data.cpp
-@@ -647,6 +647,12 @@ void DataManager::SetDefaultValues()
+@@ -647,6 +647,12 @@
  #else
  	mConst.SetValue(TW_NO_BATTERY_PERCENT, "0");
  #endif
@@ -49,7 +44,7 @@ index 00785242..7da3ea5a 100644
  	printf("TW_NO_CPU_TEMP := true\n");
  	mConst.SetValue("tw_no_cpu_temp", "1");
 diff --git a/gui/theme/landscape_hdpi/ui.xml b/gui/theme/landscape_hdpi/ui.xml
-index a71387f3..9fd021cf 100755
+index a71387f..ecc7b7f 100755
 --- a/gui/theme/landscape_hdpi/ui.xml
 +++ b/gui/theme/landscape_hdpi/ui.xml
 @@ -302,6 +302,20 @@
@@ -73,16 +68,29 @@ index a71387f3..9fd021cf 100755
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-@@ -348,6 +362,7 @@
+@@ -348,6 +362,20 @@
  					<condition var1="tw_battery" op="&gt;" var2="0"/>
  					<condition var1="tw_battery" op="&lt;" var2="101"/>
  					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
++					<condition var1="tw_remove_battery_text" var2="1"/>
++				</conditions>
++				<font resource="font_m"/>
++				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
++				<text>%tw_battery%</text>
++			</text>
++
++			<text color="%text_color%">
++				<conditions>
++					<condition var1="tw_no_battery_percent" var2="0"/>
++					<condition var1="tw_battery" op="&gt;" var2="0"/>
++					<condition var1="tw_battery" op="&lt;" var2="101"/>
++					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" op="!=" var2="1"/>
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
 diff --git a/gui/theme/landscape_mdpi/ui.xml b/gui/theme/landscape_mdpi/ui.xml
-index dadfbb9f..4ce6aa66 100755
+index dadfbb9..8025227 100755
 --- a/gui/theme/landscape_mdpi/ui.xml
 +++ b/gui/theme/landscape_mdpi/ui.xml
 @@ -302,6 +302,20 @@
@@ -106,16 +114,29 @@ index dadfbb9f..4ce6aa66 100755
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-@@ -348,6 +362,7 @@
+@@ -348,6 +362,20 @@
  					<condition var1="tw_battery" op="&gt;" var2="0"/>
  					<condition var1="tw_battery" op="&lt;" var2="101"/>
  					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
++					<condition var1="tw_remove_battery_text" var2="1"/>
++				</conditions>
++				<font resource="font_m"/>
++				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
++				<text>%tw_battery%</text>
++			</text>
++
++			<text color="%text_color%">
++				<conditions>
++					<condition var1="tw_no_battery_percent" var2="0"/>
++					<condition var1="tw_battery" op="&gt;" var2="0"/>
++					<condition var1="tw_battery" op="&lt;" var2="101"/>
++					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" op="!=" var2="1"/>
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
 diff --git a/gui/theme/portrait_hdpi/ui.xml b/gui/theme/portrait_hdpi/ui.xml
-index 104c3f66..479bada8 100755
+index 104c3f6..918925c 100755
 --- a/gui/theme/portrait_hdpi/ui.xml
 +++ b/gui/theme/portrait_hdpi/ui.xml
 @@ -299,6 +299,20 @@
@@ -139,17 +160,10 @@ index 104c3f66..479bada8 100755
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-@@ -339,12 +353,27 @@
- 				<text>%tw_time%</text>
- 			</text>
- 
-+			<!-- Custom layout configuration for Battery display -->
-+			<text color="%text_color%">
-+				<conditions>
-+					<condition var1="tw_no_battery_percent" var2="0"/>
-+					<condition var1="tw_battery" op="&gt;" var2="0"/>
-+					<condition var1="tw_battery" op="&lt;" var2="101"/>
-+					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
+@@ -345,6 +359,20 @@
+ 					<condition var1="tw_battery" op="&gt;" var2="0"/>
+ 					<condition var1="tw_battery" op="&lt;" var2="101"/>
+ 					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" var2="1"/>
 +				</conditions>
 +				<font resource="font_m"/>
@@ -157,18 +171,18 @@ index 104c3f66..479bada8 100755
 +				<text>%tw_battery%</text>
 +			</text>
 +
- 			<text color="%text_color%">
- 				<conditions>
- 					<condition var1="tw_no_battery_percent" var2="0"/>
- 					<condition var1="tw_battery" op="&gt;" var2="0"/>
- 					<condition var1="tw_battery" op="&lt;" var2="101"/>
- 					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
++			<text color="%text_color%">
++				<conditions>
++					<condition var1="tw_no_battery_percent" var2="0"/>
++					<condition var1="tw_battery" op="&gt;" var2="0"/>
++					<condition var1="tw_battery" op="&lt;" var2="101"/>
++					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" op="!=" var2="1"/>
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
 diff --git a/gui/theme/portrait_mdpi/ui.xml b/gui/theme/portrait_mdpi/ui.xml
-index d81a9a9a..7de8bdfe 100755
+index d81a9a9..a404871 100755
 --- a/gui/theme/portrait_mdpi/ui.xml
 +++ b/gui/theme/portrait_mdpi/ui.xml
 @@ -299,6 +299,20 @@
@@ -192,16 +206,29 @@ index d81a9a9a..7de8bdfe 100755
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-@@ -345,6 +359,7 @@
+@@ -345,6 +359,20 @@
  					<condition var1="tw_battery" op="&gt;" var2="0"/>
  					<condition var1="tw_battery" op="&lt;" var2="101"/>
  					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
++					<condition var1="tw_remove_battery_text" var2="1"/>
++				</conditions>
++				<font resource="font_m"/>
++				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
++				<text>%tw_battery%</text>
++			</text>
++
++			<text color="%text_color%">
++				<conditions>
++					<condition var1="tw_no_battery_percent" var2="0"/>
++					<condition var1="tw_battery" op="&gt;" var2="0"/>
++					<condition var1="tw_battery" op="&lt;" var2="101"/>
++					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" op="!=" var2="1"/>
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
 diff --git a/gui/theme/watch_mdpi/ui.xml b/gui/theme/watch_mdpi/ui.xml
-index 83966396..60b46c90 100644
+index 8396639..37f86b8 100644
 --- a/gui/theme/watch_mdpi/ui.xml
 +++ b/gui/theme/watch_mdpi/ui.xml
 @@ -238,6 +238,20 @@
@@ -225,14 +252,24 @@ index 83966396..60b46c90 100644
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%indent_right%" y="%row1_header_y%" placement="1"/>
-@@ -284,6 +298,7 @@
+@@ -284,6 +298,20 @@
  					<condition var1="tw_battery" op="&gt;" var2="0"/>
  					<condition var1="tw_battery" op="&lt;" var2="101"/>
  					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
++					<condition var1="tw_remove_battery_text" var2="1"/>
++				</conditions>
++				<font resource="font_m"/>
++				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
++				<text>%tw_battery%</text>
++			</text>
++
++			<text color="%text_color%">
++				<conditions>
++					<condition var1="tw_no_battery_percent" var2="0"/>
++					<condition var1="tw_battery" op="&gt;" var2="0"/>
++					<condition var1="tw_battery" op="&lt;" var2="101"/>
++					<condition var1="tw_battery_pos_x" op="!=" var2="0"/>
 +					<condition var1="tw_remove_battery_text" op="!=" var2="1"/>
  				</conditions>
  				<font resource="font_m"/>
  				<placement x="%tw_battery_pos_x%" y="%row1_header_y%"/>
--- 
-2.53.0.windows.1
-
