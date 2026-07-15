@@ -66,6 +66,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
     # Enable the FRP addon
     export OF_ENABLE_FRP_ADDON=1
+
+    # Check whether we are building OrangeFox or not
+    if [ -f "$(gettop)/bootable/recovery/orangefox.mk" ]; then
+        # Set a flag for BoardConfig.mk so it knows NOT to apply custom status bar 
+        # icon offsets. OrangeFox already has correct status bar icon alignments.
+        export BUILDING_ORANGEFOX=true
+    fi
 else
 	if [ -z "$FOX_BUILD_DEVICE" -a -z "$BASH_SOURCE" ]; then
 		echo "I: This script requires bash. Not processing the $FDEVICE $(basename $0)"
