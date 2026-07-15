@@ -19,7 +19,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.2-impl-qti.recovery \
     bootctrl.daisy.recovery
 
 PRODUCT_VENDOR_PROPERTIES += ro.hardware.bootctrl=daisy
